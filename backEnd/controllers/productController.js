@@ -94,10 +94,6 @@ const getPublishedProduct = async (req, res) => {
 
 
 
-
-
-
-
 module.exports = {
     addProduct,
     getAllProducts,

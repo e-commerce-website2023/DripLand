@@ -13,6 +13,7 @@ const sequelize = new Sequelize(dbConfig.DATABASE, dbConfig.USER, dbConfig.PASSW
 
 
 
+
 sequelize.authenticate()
 .then(() => {
     console.log('connected..')
@@ -47,14 +48,6 @@ db.sequelize.sync({ force: false })
 .then(() => {
     console.log('yes re-sync done!')
 })
-
-
-
-
-
-
-
-
 
 
 module.exports = db;

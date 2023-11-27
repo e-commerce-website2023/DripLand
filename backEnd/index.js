@@ -2,6 +2,7 @@
 
 const express = require('express')
 const cors = require('cors')
+const authRoutes=require('../backEnd/routes/authRoutes.js')
 
 
 const app = express()
@@ -13,11 +14,12 @@ app.use(express.json())
 
 
 //routers 
+app.use('/auth',authRoutes);
 
 
-// const users = require('./routes/users')
+const users = require('./routes/users')
 const products = require('./routes/product')
-const login = require('./routes/login')
+// const login = require('./routes/login')
 
 
 
@@ -29,21 +31,15 @@ const db= require('./models')
 
 
 const { product } = require('./controllers')
+const { user } = require('./controllers')
 
 
 
 
 
-
-
-
-
-
-
-
-// app.use('/users', users);
+app.use('/users', users);
 app.use('/product', products);
-app.use('/login', login);
+// app.use('/login', login);
 
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
