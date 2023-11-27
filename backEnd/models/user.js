@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.ENUM('admin', 'client', 'seller'),
             allowNull: false
         },
-        // Other common attributes
+        // Other common attributes'test'
     }, {
         freezeTableName: true
     });
