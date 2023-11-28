@@ -8,7 +8,14 @@ const { Sequelize, DataTypes } = require('sequelize');
 
 const sequelize = new Sequelize(dbConfig.DATABASE, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
-    dialect: dbConfig.DIALECT
+    dialect: dbConfig.DIALECT,
+    pool: {
+        min: dbConfig.pool.min,
+        max: dbConfig.pool.max,
+        acquire: dbConfig.pool.acquire,
+        idle: dbConfig.pool.idle
+    }
+
 });
 
 
@@ -48,6 +55,8 @@ db.sequelize.sync({ force: false })
 .then(() => {
     console.log('yes re-sync done!')
 })
+
+
 
 
 module.exports = db;

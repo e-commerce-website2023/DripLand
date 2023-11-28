@@ -2,7 +2,6 @@ const ErrorResponse = require('../utils/errorResponse');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
-
 // check is user is authenticated
 exports.isAuthenticated = async (req, res, next) => {
     const { token } = req.cookies;
@@ -29,3 +28,7 @@ exports.isAdmin = (req, res, next) => {
     }
     next();
 }
+
+
+
+
