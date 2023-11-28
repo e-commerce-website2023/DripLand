@@ -21,7 +21,6 @@ app.use('/api/products', productRouter)
 
 
 
-
 const users = require('./routes/users')
 const products = require('./routes/product')
 // const login = require('./routes/login')
@@ -78,7 +77,8 @@ app.use(function(request, response, next) {
 (async () => {
     await db.sequelize.sync(); // This is gonna run MySQL code
     connectToDatabase();
-  })(); // IIFE (immediately-invoked function expression) used to avoid polluting the global namespace.
+  })(); 
+  // IIFE (immediately-invoked function expression) used to avoid polluting the global namespace.
   
   function connectToDatabase() {
     db.sequelize
@@ -93,7 +93,7 @@ app.use(function(request, response, next) {
   
 
 //port
-const PORT = 8001
+const PORT= 8001
 
 
 //server
