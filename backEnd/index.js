@@ -10,11 +10,16 @@ const app = express()
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
+app.use(cors());
 
 
-
-//routers 
+//routers for user
 app.use('/auth',authRoutes);
+// for product 
+const productRouter = require('./routes/product/index')
+app.use('/api/products', productRouter)
+
+
 
 const users = require('./routes/users')
 const products = require('./routes/product')
