@@ -1,32 +1,35 @@
-const db = require('../models/product')
 
-// creat main model
-const Product = db.products
-const Review = db.reviews
+const ErrorResponse = require('../utils/errorResponse');
 
-
-
-// 1.creat product
+const db = require('../models/index.js'); 
+const Product = db.models.products;
 
 const addProduct = async (req, res) => {
+    try {
+      const {
+        image,
+        title,
+        size,
+        categories,
+        price,
+        description,
+      } = req.body;
+console.log(req.body)
 
-    let info = {
-        image: req.file.path,
-        title: req.body.title,
-        size:req.body.size,
-        categories:categories.body.categories,
-        price: req.body.price,
-        description: req.body.description,
-        published: req.body.published ? req.body.published : false
+      const newProduct = await Product.create({
+        image,
+        title,
+        size,
+        categories,
+        price,
+        description,
+      });
+      res.json({ message: "created new product", newProduct });
+      //res.json(newProduct);
+    } catch (error) {
+      res.status(500).send(error.message);
     }
-
-    const product = await Product.create(info)
-    res.status(200).send(product)
-    console.log(product)
-
-}
-
-
+  }
 
 // 2. get all products
 
@@ -87,10 +90,6 @@ const getPublishedProduct = async (req, res) => {
     res.status(200).send(products)
 
 }
-
-
-
-
 
 
 
