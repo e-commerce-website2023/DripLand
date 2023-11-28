@@ -1,33 +1,6 @@
-// const db = require('../models')
 
-// // creat main model
-// const User = db.users
-
-
-
-
-
-
-// module.exports = {
-// //add user to data base
-//     create: async (req, res) => {
-//         if (req.body.username && req.body.password) {
-//             const { username, password } = req.body;
-
-//             await User.create({
-//                 username,
-//                 password
-//             });
-// // from input(views)
-//             res.render('profile', { username });
-//         } else {
-//             res.send('Not added to the database!');
-//         }
-//     }
-
-// }
-
-const User = require('../models/user.js'); 
+const db = require('../models/index.js'); 
+const User = db.models.users;
 const ErrorResponse = require('../utils/errorResponse');
 
 
@@ -81,7 +54,6 @@ exports.signin = async (req, res, next) => {
     if (!isMatched) {
       return next(new ErrorResponse('Invalid credentials', 400));
     }
-
     sendTokenResponse(user, 200, res);
   } catch (error) {
     next(error);
@@ -89,14 +61,15 @@ exports.signin = async (req, res, next) => {
 };
 
 const sendTokenResponse = async (user, codeStatus, res) => {
+  console.log("send token");
   try {
     const token = await user.getJwtToken();
-
+    console.log("token = "+token);
     const options = { maxAge: 60 * 60 * 1000, httpOnly: true };
 
-    if (process.env.NODE_ENV === 'production') {
-      options.secure = true;
-    }
+    // if (process.env.NODE_ENV === 'production') {
+    //   options.secure = true;
+    // }
 
     res
       .status(codeStatus)
@@ -107,7 +80,8 @@ const sendTokenResponse = async (user, codeStatus, res) => {
         role: user.role,
       });
   } catch (error) {
-    next(error);
+    console.log("400 error");
+    res.status(400).json(error);
   }
 };
 
