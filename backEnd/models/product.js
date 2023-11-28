@@ -1,7 +1,14 @@
+
+
+
 module.exports = (sequelize, DataTypes) => {
+
+
     const Product = sequelize.define('Product', {
         image: {
             type: DataTypes.BLOB('long'),
+            allowNull: false,
+            
         },
         
         title: {
@@ -27,9 +34,11 @@ module.exports = (sequelize, DataTypes) => {
         stock: {
             type: DataTypes.INTEGER,
         },
+        
         published: {
             type: DataTypes.BOOLEAN
         },
+        
         
     }, {
         freezeTableName: true,
