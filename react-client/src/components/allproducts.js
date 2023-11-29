@@ -96,7 +96,7 @@ const AllProducts = () => {
       />
       <ul>
         {products.map((product) => (
-          <Post />
+          <Post product={product}/>
         ))}
       </ul>
     </div>
