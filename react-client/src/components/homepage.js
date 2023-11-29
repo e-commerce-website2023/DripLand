@@ -1,12 +1,27 @@
 import React from 'react'
+import { useEffect, useState } from "react";
+import AllProducts from "./Allproducts";
+import axios from 'axios'
 
 
 
 
+const Homepage = ({userData}) => {
+  
 
-const Homepage = () => {
+  console.log();
+
+
   return (
-    <h4>homepage</h4>
+  
+ <div>
+      <h4>Homepage</h4>
+     
+      <AllProducts />
+
+
+    </div>
+    
   )
 }
 

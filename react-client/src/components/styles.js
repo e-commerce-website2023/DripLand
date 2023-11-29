@@ -13,65 +13,101 @@ export const commonStyles = {
 
 export const navStyles = {
   display: 'flex',
+  flexDirection: 'row',
   alignItems: 'center',
+  justifyContent: 'space-between', // Add this to distribute items along the main axis
+  position: 'fixed',
+  top: 8,
+  width: '100%',
+  backgroundColor: 'linear-gradient(to right, #984D38, #181E41)',
+  padding: '10px',
+  zIndex: 1000,
+
+//home nav
+
+linkContainer: {
+  display: 'flex',
+  flexDirection: 'row', // Align links horizontally
+  margin: 'auto'
+},
+  // Style for the "Home" link
+ linkHome: {
+    fontFamily: 'SF Pro Display',
+    fontWeight: 600,
+    fontSize: '16px',
+    lineHeight: '19.09px',
+    color: '#FFFFFF',
+    textDecoration: 'none',
+    margin: '0 20px 0 800px',
+    // Add any additional styles for the "Home" link
+  },
+  linkCheckout: {
+    fontFamily: 'SF Pro Display',
+    fontWeight: 600,
+    fontSize: '16px',
+    lineHeight: '19.09px',
+    color: '#FFFFFF',
+    textDecoration: 'none',
+    margin: '0 20px 0 400px',
+    // Add any additional styles for the "Home" link
+  },
+  linkProfile: {
+    fontFamily: 'SF Pro Display',
+    fontWeight: 600,
+    fontSize: '16px',
+    lineHeight: '19.09px',
+    color: '#FFFFFF',
+    textDecoration: 'none',
+    margin: '0 30px 0 0px',
+    // Add any additional styles for the "Home" link
+  }
 };
 
-export const walletButtonStyles = {
-  display: "flex",
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  padding: "10px",
-  gap: "10px",
-  position: "absolute",
-  width: "108px",
-  height: "38px",
-  left: "1217px",
-  top: "32px",
-  border: "0.5px solid #FFFFFF",
-  borderRadius: "5px",
-};
 
-export const walletTextStyles = {
-  fontWeight: 600,
-  fontSize: "16px",
-  lineHeight: "19px",
-  letterSpacing: "0.02em",
-  color: "#FFFFFF",
-};
 
+
+
+
+
+
+
+
+
+
+
+//search styles
 export const searchBarStyles = {
   position: "absolute",
-  left: "20%", // Adjust this value as needed
+  left: "10%", // Adjust this value as needed
   right: "63.19%",
-  top: "25.74%",
-  bottom: "26.73%",
+  top: "20%", // Adjust this value to move it to the top
+  bottom: "1%",
 };
 
 export const searchItemStyles = {
   rectangle: {
     boxSizing: "border-box",
     position: "absolute",
-    left: "20%", // Adjust this value as needed
-    right: "20%",
-    top: "25.74%",
-    bottom: "26.73%",
+    left: "15%", // Adjust this value as needed
+    right: "15%",
+    top: "1%", // Adjust this value to match the top of the search bar
+    bottom: "1%",
     border: "0.5px solid rgba(255, 255, 255, 0.5)",
     borderRadius: "184px",
   },
-  vector: {
-    position: "absolute",
-    left: "21%", // Adjust this value as needed
-    right: "85.56%",
-    top: "39.6%",
-    bottom: "39.6%",
-    background: "#FFFFFF",
-  },
+  // vector: {
+  //   position: "absolute",
+  //   left: "21%", // Adjust this value as needed
+  //   right: "85.56%",
+  //   top: "19.6%", // Adjust this value to match the top of the search bar
+  //   bottom: "39.6%",
+  //   background: "#FFFFFF",
+  // },
   text: {
     position: "absolute",
-    left: "23%", // Adjust this value as needed
-    right: "65.62%",
-    top: "41.58%",
+    left: "19%", // Adjust this value as needed
+    right: "1%",
+    top: "21.58%", // Adjust this value to match the top of the search bar
     bottom: "41.58%",
     fontFamily: 'SF Pro Display',
     fontStyle: 'normal',
@@ -83,16 +119,3 @@ export const searchItemStyles = {
   },
 };
 
-export const logoStyles = {
-  position: "absolute",
-  left: "3.54%",
-  right: "90.83%",
-  top: "27.72%",
-  bottom: "30.69%",
-  fontFamily: 'Roboto',
-  fontStyle: 'normal',
-  fontWeight: 700,
-  fontSize: "36px",
-  lineHeight: "42px",
-  color: "#6C5DD3",
-};

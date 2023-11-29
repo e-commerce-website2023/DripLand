@@ -5,14 +5,19 @@ import { searchBarStyles, searchItemStyles } from "./styles";
 
 const Search = () => {
   return (
-    <Box style={searchBarStyles}>
-    <Box style={searchItemStyles.rectangle}></Box>
-    <Box style={searchItemStyles.vector}></Box>
-    <Typography variant="body1" style={searchItemStyles.text}>
-      Search Items, Fashion, Collection and Users
-    </Typography>
-  </Box>
-  )
-}
+    <Box sx={searchBarStyles}>
+      {/* Rectangle 1 */}
+      <Box sx={searchItemStyles.rectangle}></Box>
 
-export default Search
+      {/* Vector */}
+      <Box sx={searchItemStyles.vector}></Box>
+
+      {/* Search Items, Fashion, Collection, and Users */}
+      <Typography variant="body1" sx={searchItemStyles.text}>
+        Search brands..
+      </Typography>
+    </Box>
+  );
+};
+
+export default Search;

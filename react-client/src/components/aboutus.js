@@ -1,8 +1,15 @@
 import React from 'react'
 
+
+
+
+//styles 
+
+
 const aboutus = () => {
   return (
-    <h1>aboutus</h1>
+
+    <p>About Us</p>
   )
 }
 
