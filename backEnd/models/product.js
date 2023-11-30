@@ -44,5 +44,9 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true,
     });
 
+
+    Product.associate = (models) => {
+        Product.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
+      };
     return Product;
 };

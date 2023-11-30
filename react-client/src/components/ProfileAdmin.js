@@ -1,8 +1,13 @@
 import React from 'react'
 
-const ProfileAdmin = () => {
+const ProfileAdmin = ({userData}) => {
   return (
     <div>ProfileAdmin</div>
+
+
+
+
+    
   )
 }
 

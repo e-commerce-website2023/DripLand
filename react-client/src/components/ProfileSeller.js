@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProfileSeller = () => {
+const ProfileSeller = ({userData}) => {
   return (
     <div>ProfileSeller</div>
   )

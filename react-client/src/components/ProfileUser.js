@@ -1,9 +1,18 @@
-import React from 'react'
+import React from 'react';
 
-const ProfileUser = () => {
+const ProfileUser = ({ userData }) => {
   return (
-    <div>ProfileUser</div>
-  )
-}
+    <div>
+      
+      <img src={userData.bannerUrl} alt="Banner" />
 
-export default ProfileUser
+     
+      <img src={userData.image} alt="Profile" />
+
+   
+      <p>{userData.name}</p>
+    </div>
+  );
+};
+
+export default ProfileUser;

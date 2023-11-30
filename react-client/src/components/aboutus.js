@@ -1,16 +1,29 @@
-import React from 'react'
+import React from 'react';
 
-
-
-
-//styles 
-
-
-const aboutus = () => {
+const AboutUs = () => {
   return (
+    <div>
+      <div>
+       
+        <p>Who we are.</p>
+        <button>More +</button>
+      </div>
 
-    <p>About Us</p>
-  )
-}
+      <div>
+        <div>
+          <p>Since 2014</p>
+          <p>What WE DO</p>
+          <button>More +</button>
+        </div>
 
-export default aboutus
+        <div>
+          <p>When We Started</p>
+          <p>I'm here</p>
+          <button>More +</button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default AboutUs;

@@ -70,6 +70,7 @@ function App() {
 <Link to="/Profile" style={navStyles.linkProfile}>{userData.image}</Link>
 <div style={navStyles.linkContainer}></div>
         </nav>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '80px' }}>
         <Routes>
         
           <Route path="/" element={<Homepage userData={userData}/>} />
@@ -84,7 +85,7 @@ function App() {
 
 
         </Routes>
-
+        </div>
       </Router>
      </GradientBackground>
   );
