@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 import Homepage from './components/Homepage'
 import Aboutus from './components/Aboutus'
 import Dashboard from './components/Dashboard'
-import Signup from './components/Signup'
+
 import Login from './components/Login'
 import ProfileUser from './components/ProfileUser'
 import ProfileAdmin from './components/ProfileAdmin'

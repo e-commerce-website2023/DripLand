@@ -211,6 +211,8 @@ const searchProducts = async (req, res) => {
           },
       });
 
+<<<<<<< HEAD
+=======
       res.status(200).json(products);
   } catch (error) {
       res.status(500).send(error.message);
@@ -235,6 +237,7 @@ const addTestProducts = async (req, res) => {
   }
 };
 
+>>>>>>> c9803d1ce635d1c32f7b220bbd84de0a66554d76
 module.exports = {
   addProduct,
   getAllProducts,

@@ -1,5 +1,9 @@
 
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> origin/main
 const ErrorResponse = require('../utils/errorResponse');
 const db = require('../models/index.js'); 
 const User = db.models.users;
