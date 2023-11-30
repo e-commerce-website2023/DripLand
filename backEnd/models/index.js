@@ -6,6 +6,11 @@ const { Sequelize, DataTypes } = require('sequelize')
 
 const sequelize = new Sequelize(dbConfig.DATABASE, dbConfig.USER, dbConfig.PASSWORD, {
     host: dbConfig.HOST,
+<<<<<<< HEAD
+=======
+
+  
+>>>>>>> origin/main
     dialect: dbConfig.DIALECT,
     pool: {
         min: dbConfig.pool.min,
@@ -13,6 +18,12 @@ const sequelize = new Sequelize(dbConfig.DATABASE, dbConfig.USER, dbConfig.PASSW
         acquire: dbConfig.pool.acquire,
         idle: dbConfig.pool.idle
     }
+<<<<<<< HEAD
+=======
+
+});
+
+>>>>>>> origin/main
 
 });
 
