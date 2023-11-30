@@ -17,7 +17,7 @@ const router = express.Router();
 
 const productController = require('../../controllers/productController')
 const reviewController = require('../../controllers/reviewController')
-const { addProduct,getAllProducts,getPublishedProduct } = require('../../controllers/productController');
+const { addProduct,getAllProducts,getPublishedProduct,searchProducts } = require('../../controllers/productController');
 
 
 // use routers
@@ -26,7 +26,7 @@ router.post('/addProduct', productController.addProduct)
 
 
 router.get('/allProducts', productController.getAllProducts)
-
+router.get('/allProducts', productController.searchProducts )
 router.get('/published', productController.getPublishedProduct)
 
 

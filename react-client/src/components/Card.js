@@ -89,7 +89,13 @@ import { Card as MuiCard, CardContent, CardActions, Button, Typography } from '@
 
 const Card = ({ product }) => {
   return (
-    <MuiCard sx={{ maxWidth: 300, borderRadius: 8, boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)', margin: 2 }}>
+    <MuiCard  sx={{
+      maxWidth: '30%', // Set to one-third of the container width
+      borderRadius: 8,
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+      margin: '10px',
+      
+    }}>
       <CardContent>
         <Typography variant="h6" component="div" sx={{ fontSize: 18, fontWeight: 'bold', marginBottom: 1 }}>
           {product.title}
@@ -97,7 +103,17 @@ const Card = ({ product }) => {
         <Typography variant="body1" sx={{ fontSize: 16, marginBottom: 1 }}>
           Price: ${product.price}
         </Typography>
-        <img src={product.image} alt={product.title} style={{ maxWidth: '100%', borderRadius: 8, marginBottom: 1 }} />
+        <img src={product.image}
+          alt={product.title}
+          style={{
+            
+            maxWidth: '100%', 
+            height: '200px', 
+            objectFit: 'cover', 
+            borderRadius: 8,
+            marginBottom: 1,
+            
+          }} />
         <Typography variant="body1" sx={{ fontSize: 16, marginBottom: 1 }}>
           Price: ${product.price}
         </Typography>

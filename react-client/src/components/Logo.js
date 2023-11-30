@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const LogoContainer = styled('div')({
   position: 'absolute',
-  left: '3.54%',
+  left: '0.54%',
   top: '27.72%',
   fontFamily: 'Roboto',
   fontStyle: 'normal',
@@ -18,7 +18,7 @@ const Logo = () => {
   return (
     <Link to="/">
       <LogoContainer>
-        Logo
+        DRIP LAND
       </LogoContainer>
     </Link>
   );

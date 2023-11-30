@@ -1,15 +1,12 @@
 
 
-const ErrorResponse = require('../utils/errorResponse');
 const db = require('../models/index.js'); 
 const User = db.models.users;
-
-
-
+const ErrorResponse = require('../utils/errorResponse');
 
 
 exports.signup
- = async (req, res) => {
+ = async (req, res, next) => {
   const { email } = req.body;
 
   try {
@@ -33,8 +30,10 @@ exports.signup
 };
 
 exports.signin = async (req, res, next) => {
+  const { email, password } = req.body;
+  console.log('Received login request:', req.body);
+
   try {
-    const { email, password } = req.body;
 
     // Validation
     if (!email) {
@@ -45,8 +44,8 @@ exports.signin = async (req, res, next) => {
     }
 
     // Check user email
-    const user = await User.findOne({ where: { email:email } });
-  
+    const user = await User.findOne({ email, password });
+  console.log('Received login request:', { email, password })
 
     if (user == null) {
       return next(new ErrorResponse('Invalid credentials', 400));
@@ -58,36 +57,39 @@ exports.signin = async (req, res, next) => {
     if (!isMatched) {
       return next(new ErrorResponse('Invalid credentials', 400));
     }
-    sendTokenResponse(user, 200, res);
+    // sendTokenResponse(user, 200, res);
+    res.status(200).json({
+      success: true,
+      id: user.id,
+      role: user.role,
+    });
   } catch (error) {
     next(error);
   }
 };
 
-const sendTokenResponse = async (user, codeStatus, res) => {
-  console.log("send token");
-  try {
-    const token = await user.getJwtToken();
-    console.log("token = "+token);
-    const options = { maxAge: 60 * 60 * 1000, httpOnly: true };
 
-    // if (process.env.NODE_ENV === 'production') {
-    //   options.secure = true;
-    // }
+// const sendTokenResponse = async (user, codeStatus, res) => {
+//   console.log("send token");
+//   try {
+//     const token = await user.getJwtToken();
+//     console.log("token =", token);
+//     const options = { maxAge: 60 * 60 * 1000, httpOnly: true };
 
-    res
-      .status(codeStatus)
-      .cookie('token', token, options)
-      .json({
-        success: true,
-        id: user.id,
-        role: user.role,
-      });
-  } catch (error) {
-    console.log("400 error");
-    res.status(400).json(error);
-  }
-};
+//     res
+//       .status(codeStatus)
+//       .cookie('token', token, options)
+//       .json({
+//         success: true,
+//         id: user.id,
+//         role: user.role,
+//       });
+//   } catch (error) {
+//     console.error("Error sending token response:", error);
+//     res.status(400).json({ error: 'Token response error' });
+//   }
+// };
+
 
 // Log out
 exports.logout = (req, res, next) => {
@@ -116,5 +118,5 @@ exports.userProfile = async (req, res, next) => {
     });
   } catch (error) {
     next(error);
-  }
+  }
 };

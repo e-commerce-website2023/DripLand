@@ -67,7 +67,9 @@ function App() {
           <div style={navStyles.linkContainer}></div>
           <Link to="/" style={navStyles.linkHome}>Home</Link>
 <Link to="/Checkout" style={navStyles.linkCheckout}>Checkout</Link>
-<Link to="/Profile" style={navStyles.linkProfile}>{userData.image}</Link>
+<Link to="/ProfileUser" style={navStyles.linkCheckout}>{userData.name}</Link>
+<Link to="/Aboutus" >AboutUs</Link>
+
 <div style={navStyles.linkContainer}></div>
         </nav>
         <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '80px' }}>
