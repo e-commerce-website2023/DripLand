@@ -30,9 +30,10 @@ module.exports = (sequelize,DataTypes) => {
         },
       },
       role: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM('admin', 'seller', 'user'), // Add ENUM for specific roles
         defaultValue: 'user',
       },
+      
     },{
       timestamps: true,
       hooks: {

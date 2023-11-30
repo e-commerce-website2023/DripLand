@@ -13,7 +13,9 @@ import Aboutus from './components/Aboutus'
 import Dashboard from './components/Dashboard'
 import Signup from './components/Signup'
 import Login from './components/Login'
-import Profile from './components/Profile'
+import ProfileUser from './components/ProfileUser'
+import ProfileAdmin from './components/ProfileAdmin'
+import ProfileSeller from './components/ProfileSeller'
 import Productdetail from './components/Productdetail'
 import Checkout from './components/Checkout'
 import Search from './components/Search'
@@ -65,7 +67,7 @@ function App() {
           <div style={navStyles.linkContainer}></div>
           <Link to="/" style={navStyles.linkHome}>Home</Link>
 <Link to="/Checkout" style={navStyles.linkCheckout}>Checkout</Link>
-<Link to="/Profile" style={navStyles.linkProfile}>Profile</Link>
+<Link to="/Profile" style={navStyles.linkProfile}>{userData.image}</Link>
 <div style={navStyles.linkContainer}></div>
         </nav>
         <Routes>
@@ -75,9 +77,10 @@ function App() {
           <Route path="/Signup" element={<Signup/>} />
           <Route path="/Login" element={<Login  setUserData={setUserData} />} />
           <Route path="/Dashboard" element={<Dashboard userData={userData}/>} />
-          <Route path="/Profile" element={<Profile userData={userData}/>} />
+          <Route path="/ProfileUser" element={<ProfileUser    userData={userData}/>} />
+          <Route path="/ProfileAdmin" element={<ProfileAdmin    userData={userData}/>} />
+          <Route path="/ProfileSeller" element={<ProfileSeller    userData={userData}/>} />
           <Route path="/Checkout" element={<Checkout userData={userData}/>} />
-          {/* <Route path="/Allproducts" element={<Allproducts />} /> */}
 
 
         </Routes>
