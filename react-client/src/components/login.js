@@ -112,7 +112,7 @@ const Login = (props) => {
           </Typography>
         </Grid>
         <Grid item>
-          <EmailInput
+          <EmailSignUp
             label="Email"
             value={loginDetails.email}
             onChange={(event) => handleInput("email", event.target.value)}
@@ -122,7 +122,7 @@ const Login = (props) => {
           />
         </Grid>
         <Grid item>
-          <PasswordInput
+          <PasswordSignUp
             label="Password"
             value={loginDetails.password}
             onChange={(event) => handleInput("password", event.target.value)}
