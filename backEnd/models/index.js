@@ -1,6 +1,7 @@
 
 // data base conncetion and mysql tables in our folder
-
+const dbConfig = require('../config/db-config');
+const { Sequelize, DataTypes } = require('sequelize')
 
 
 const sequelize = new Sequelize(dbConfig.DATABASE, dbConfig.USER, dbConfig.PASSWORD, {
