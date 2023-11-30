@@ -143,5 +143,3 @@ const Login = (props) => {
     </Paper>
   );
 };
-
-export default Login;

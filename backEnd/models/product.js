@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 
     const Product = sequelize.define('Product', {
         image: {
-            type: DataTypes.BLOB('long'),
+            type: DataTypes.STRING,
             allowNull: false,
             
         },
@@ -44,5 +44,9 @@ module.exports = (sequelize, DataTypes) => {
         freezeTableName: true,
     });
 
+
+    Product.associate = (models) => {
+        Product.belongsTo(models.User, { foreignKey: 'userId', as: 'user' });
+      };
     return Product;
 };

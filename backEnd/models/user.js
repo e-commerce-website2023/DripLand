@@ -30,9 +30,10 @@ module.exports = (sequelize,DataTypes) => {
         },
       },
       role: {
-        type: DataTypes.STRING,
+        type: DataTypes.ENUM('admin', 'seller', 'user'), // Add ENUM for specific roles
         defaultValue: 'user',
       },
+      
     },{
       timestamps: true,
       hooks: {
@@ -54,6 +55,10 @@ module.exports = (sequelize,DataTypes) => {
         expiresIn: 3600,
       });
     };
+    User.associate = (models) => {
+      User.hasMany(models.Product, { foreignKey: 'userId', as: 'products' });
+    };
+    
 
     return User;
 };
