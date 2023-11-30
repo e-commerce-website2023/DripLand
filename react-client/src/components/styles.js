@@ -17,10 +17,11 @@ export const navStyles = {
   alignItems: 'center',
   justifyContent: 'space-between', // Add this to distribute items along the main axis
   position: 'fixed',
-  top: 8,
+  top: 0,
   width: '100%',
   backgroundColor: 'linear-gradient(to right, #984D38, #181E41)',
-  padding: '10px',
+  
+  padding: '20px',
   zIndex: 1000,
 
 //home nav

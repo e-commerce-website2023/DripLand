@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
 
     const Product = sequelize.define('Product', {
         image: {
-            type: DataTypes.BLOB('long'),
+            type: DataTypes.STRING,
             allowNull: false,
             
         },

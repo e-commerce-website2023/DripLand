@@ -15,7 +15,7 @@ const Homepage = ({userData}) => {
   return (
   
  <div>
-      <h4>Homepage</h4>
+      
      
       <AllProducts />
 

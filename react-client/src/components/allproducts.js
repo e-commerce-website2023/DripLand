@@ -56,7 +56,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Post from './Post'
+import Card from './Card'
 
 const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -87,7 +87,7 @@ const AllProducts = () => {
   
   return (
     <div>
-      <h1>All Products</h1>
+      <h1>this is all products</h1>
       <input
         type="text"
         placeholder="Search products..."
@@ -96,7 +96,7 @@ const AllProducts = () => {
       />
       <ul>
         {products.map((product) => (
-          <Post product={product}/>
+          <Card product={product}/>
         ))}
       </ul>
     </div>
