@@ -33,6 +33,11 @@ module.exports = (sequelize,DataTypes) => {
         type: DataTypes.ENUM('admin', 'seller', 'user'), // Add ENUM for specific roles
         defaultValue: 'user',
       },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        
+    },
       
     },{
       timestamps: true,

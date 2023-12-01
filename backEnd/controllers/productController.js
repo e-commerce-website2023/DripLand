@@ -122,6 +122,8 @@ const addProduct = async (req, res) => {
         categories,
         price,
         description,
+        stock,
+        brand,
       } = req.body;
 console.log(req.body)
 
@@ -132,10 +134,13 @@ console.log(req.body)
         categories,
         price,
         description,
+        stock,
+        brand,
       });
       res.json({ message: "created new product", newProduct });
       //res.json(newProduct);
     } catch (error) {
+      console.error('Error creating new product:', error);
       res.status(500).send(error.message);
     }
   }
@@ -201,11 +206,11 @@ const getPublishedProduct = async (req, res) => {
 }
 const searchProducts = async (req, res) => {
   try {
-      const searchTerm = req.params.searchTerm;
+    const searchTerm = req.params.searchTerm;
       const products = await Product.findAll({
           where: {
               title: {
-                [Sequelize.Op.iLike]: sequelize.literal('%${searchTerm}%')
+                [Sequelize.Op.iLike]: sequelize.literal(`'%${searchTerm}%'`)
                 
               },
           },
@@ -213,8 +218,8 @@ const searchProducts = async (req, res) => {
 
       res.status(200).json(products);
   } catch (error) {
-      res.status(500).send(error.message);
-  }
+    console.error('Error in searchProducts:', error);
+    res.status(500).send('Internal Server Error');  }
 };
 
 const addTestProducts = async (req, res) => {

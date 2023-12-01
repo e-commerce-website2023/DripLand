@@ -98,7 +98,8 @@ const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('user'); // Default role is 'user'
+  const [role, setRole] = useState('user'); 
+  const [image, setImage] = useState('');  
   const [error, setError] = useState('');
 
   const handleAddUser = async () => {
@@ -108,11 +109,13 @@ const SignUp = () => {
         email,
         password,
         role,
+        image,
       });
 console.log(name,
   email,
   password,
-  role,)
+  role,
+  image,)
       // You can navigate to the login page or any other route if needed
       window.location.href = '/login';    } catch (err) {
       console.error('Error adding user:', err);
@@ -121,7 +124,7 @@ console.log(name,
   };
 
   return (
-    <Container component="main" maxWidth="xs" style={{ backgroundColor: '#0C2340', padding: '20px', borderRadius: '10px', marginTop: '50px', color: 'white' }}>
+    <Container component="main" maxWidth="xs" style={{ backgroundColor: 'rgba(255, 255, 255, 0.1)', padding: '10px', borderRadius: '10px', marginTop: '50px', color: 'white' }}>
       <Typography variant="h4" gutterBottom>
         SignUp
       </Typography>
@@ -173,6 +176,17 @@ console.log(name,
         <option value="admin">Admin</option>
         <option value="seller">Seller</option>
       </select>
+      <TextField
+ fullWidth
+ margin="normal"
+ label="Image URL"
+ type="text"
+ onChange={(e) => setImage(e.target.value)}
+ InputProps={{
+   style: { backgroundColor: 'white', color: '#0C2340' },
+ }}
+/>
+      
 
       <Button onClick={handleAddUser} variant="contained" style={{ backgroundColor: '#5A4FCF', color: 'white', marginTop: '10px' }} fullWidth>
         Submit

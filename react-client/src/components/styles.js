@@ -61,6 +61,16 @@ linkContainer: {
     textDecoration: 'none',
     margin: '0 30px 0 0px',
     // Add any additional styles for the "Home" link
+  },
+  linkAboutus: {
+    fontFamily: 'SF Pro Display',
+    fontWeight: 600,
+    fontSize: '16px',
+    lineHeight: '19.09px',
+    color: '#FFFFFF',
+    textDecoration: 'none',
+    margin: '0 30px 0 0px',
+    // Add any additional styles for the "Home" link
   }
 };
 

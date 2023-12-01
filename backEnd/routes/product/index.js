@@ -21,12 +21,12 @@ const { addProduct,getAllProducts,getPublishedProduct,searchProducts } = require
 
 
 // use routers
-router.post('/addProduct', productController.addProduct)
+router.post('/addProduct', productController.addProduct);
 // router.post('/addProduct', isAuthenticated, isSeller, productController.addProduct);
 
 
 router.get('/allProducts', productController.getAllProducts)
-router.get('/allProducts', productController.searchProducts )
+router.get('/search/:searchTerm', productController.searchProducts )
 router.get('/published', productController.getPublishedProduct)
 
 

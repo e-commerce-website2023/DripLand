@@ -24,6 +24,10 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        brand: {
+            type: DataTypes.STRING,
+            allowNull: true, // Adjust as needed
+          },
         size: {
             type: DataTypes.INTEGER,
             allowNull: false,

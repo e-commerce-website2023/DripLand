@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const LogoContainer = styled('div')({
   position: 'absolute',
-  left: '0.54%',
+  left: '2%',
   top: '27.72%',
   fontFamily: 'Roboto',
   fontStyle: 'normal',
