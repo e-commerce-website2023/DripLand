@@ -154,11 +154,11 @@ const searchProducts = async (req, res) => {
 //     res.status(500).send('Internal Server Error');
 //   }
 // };
+
 const getProductReviews = async (req, res) => {
   try {
     const id = req.params.id;
-
-    // Use the correct association name 'reviews' instead of 'review'
+console.log('id in get product reviews',req.params.id,id )
     const data = await Product.findOne({
       include: [{
         model: Review,
@@ -194,7 +194,22 @@ const addTestProducts = async (req, res) => {
   }
 };
 
+//get user products:
 
+
+const getProductsByUser = async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    // Assuming you have a 'user_id' column in your Product table
+    const userProducts = await Product.findAll({ where: { user_id: userId } });
+
+    res.status(200).json(userProducts);
+  } catch (error) {
+    console.error('Error fetching user products:', error);
+    res.status(500).send('Internal Server Error');
+  }
+};
 
 
 
@@ -208,4 +223,5 @@ module.exports = {
   searchProducts,
   addTestProducts, 
   getProductReviews,
+  getProductsByUser,
 };

@@ -1,10 +1,514 @@
-import React from 'react'
 
-const ProfileSeller = ({userData}) => {
+
+import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+
+const ProfileSeller = ({ userData }) => {
+  // Existing state for profile editing
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedDescription, setEditedDescription] = useState(userData.description || '');
+
+  // New state for post creation
+  const [newPost, setNewPost] = useState({
+    image: '',
+    title: '',
+    size: '',
+    category: '',
+    price: '',
+    description: '',
+    stock: '',
+    brand: '',
+  });
+
+  // Handle profile editing
+  const handleEditClick = () => {
+    setIsEditing(true);
+  };
+
+  const handleSaveClick = () => {
+    console.log('Edited Description:', editedDescription);
+    setIsEditing(false);
+  };
+
+  // Handle post creation
+  const handlePostClick = async () => {
+    console.log('New Post:', newPost);
+
+    try {
+      // Sending a POST request to create a new product
+      const response = await fetch('http://localhost:8001/api/products/addProduct', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newPost),
+      });
+
+      if (response.ok) {
+        console.log('Product created successfully');
+        // Add logic to update your product list or take any other action as needed
+      } else {
+        console.error('Failed to create product');
+      }
+    } catch (error) {
+      console.error('Error creating product:', error);
+    }
+  };
+
   return (
-    <div>ProfileSeller</div>
-    
-  )
-}
+    <div>
+      {/* Profile Section */}
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <div
+          style={{
+            width: '150px',
+            height: '150px',
+            borderRadius: '50%',
+            overflow: 'hidden',
+            margin: '0 auto',
+          }}
+        >
+          <img
+            src={userData.image}
+            alt="Profile"
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          />
+        </div>
+        <p style={{ marginTop: '10px', fontSize: '1.5rem', fontWeight: 'bold' }}>
+          {userData.name}
+        </p>
 
-export default ProfileSeller
+        {/* Description Section */}
+        {isEditing ? (
+          // Edit mode with input field
+          <div style={{ margin: '10px 0' }}>
+            <input
+              type="text"
+              value={editedDescription}
+              onChange={(e) => setEditedDescription(e.target.value)}
+            />
+            <Button
+              variant="contained"
+              style={{ backgroundColor: '#6C5DD3', color: '#FFFFFF', marginRight: '10px' }}
+              onClick={handleSaveClick}
+            >
+              Save
+            </Button>
+          </div>
+        ) : (
+          // Display mode with description and edit button
+          <div style={{ margin: '10px 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <p style={{ fontSize: '1rem', color: 'white', marginRight: '10px' }}>
+              {editedDescription || 'Welcome to my profile'}
+            </p>
+            <Button
+              variant="contained"
+              style={{ backgroundColor: '#6C5DD3', color: '#FFFFFF' }}
+              onClick={handleEditClick}
+            >
+              Edit
+            </Button>
+          </div>
+        )}
+      </div>
+
+      {/* Create New Post Section */}
+      <Box
+        sx={{
+          backgroundColor: 'white',
+          padding: '20px',
+          borderRadius: '8px',
+          boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        {/* Left Section: Create New Post */}
+        <div style={{ flex: 1, marginRight: '20px', textAlign: 'left' }}>
+          <h2>Create a New Post</h2>
+          <div>
+            <TextField
+              label="Image"
+              variant="outlined"
+              value={newPost.image}
+              onChange={(e) => setNewPost({ ...newPost, image: e.target.value })}
+              fullWidth
+              margin="normal"
+            />
+          </div>
+          <div>
+            <TextField
+              label="Title"
+              variant="outlined"
+              value={newPost.title}
+              onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+              fullWidth
+              margin="normal"
+            />
+          </div>
+          <div>
+            <TextField
+              label="Size"
+              variant="outlined"
+              value={newPost.size}
+              onChange={(e) => setNewPost({ ...newPost, size: e.target.value })}
+              fullWidth
+              margin="normal"
+            />
+          </div>
+          <div>
+            <FormControl fullWidth variant="outlined" margin="normal">
+              <InputLabel id="category-label">Category</InputLabel>
+              <Select
+                label="categories"
+                labelId="categories-label"
+                value={newPost.categories}
+                onChange={(e) => setNewPost({ ...newPost, categories: e.target.value })}
+              >
+                <MenuItem value="men">Men</MenuItem>
+                <MenuItem value="women">Women</MenuItem>
+                <MenuItem value="kids">Kids</MenuItem>
+              </Select>
+            </FormControl>
+          </div>
+          <div>
+            <TextField
+              label="Price"
+              variant="outlined"
+              value={newPost.price}
+              onChange={(e) => setNewPost({ ...newPost, price: e.target.value })}
+              fullWidth
+              margin="normal"
+            />
+          </div>
+          <div>
+            <TextField
+              label="Description"
+              variant="outlined"
+              value={newPost.description}
+              onChange={(e) => setNewPost({ ...newPost, description: e.target.value })}
+              fullWidth
+              margin="normal"
+            />
+          </div>
+          <div>
+            <TextField
+              label="Stock"
+              variant="outlined"
+              value={newPost.stock}
+              onChange={(e) => setNewPost({ ...newPost, stock: e.target.value })}
+              fullWidth
+              margin="normal"
+            />
+          </div>
+          <div>
+            <TextField
+              label="Brand"
+              variant="outlined"
+              value={newPost.brand}
+              onChange={(e) => setNewPost({ ...newPost, brand: e.target.value })}
+              fullWidth
+              margin="normal"
+            />
+          </div>
+          <Button
+            variant="contained"
+            style={{ backgroundColor: '#6C5DD3', color: '#FFFFFF', marginTop: '10px' }}
+            onClick={handlePostClick}
+          >
+            Post
+          </Button>
+        </div>
+
+        {/* Right Section: Display Products */}
+        <div style={{ flex: 1, textAlign: 'center' }}>
+          <h2>My Products</h2>
+          <div>
+            {/* Display existing products here */}
+            {/* You can add a loop to map through your products and display them */}
+            <p>Product 1</p>
+            <p>Product 2</p>
+            {/* ... */}
+          </div>
+        </div>
+      </Box>
+    </div>
+  );
+};
+
+export default ProfileSeller;
+// add product working but not getting all the products
+
+
+// import React, { useState, useEffect } from 'react';
+// import Button from '@mui/material/Button';
+// import TextField from '@mui/material/TextField';
+// import Box from '@mui/material/Box';
+// import Select from '@mui/material/Select';
+// import MenuItem from '@mui/material/MenuItem';
+// import FormControl from '@mui/material/FormControl';
+// import InputLabel from '@mui/material/InputLabel';
+
+// const ProfileSeller = ({ userData }) => {
+//   // Existing state for profile editing
+//   const [isEditing, setIsEditing] = useState(false);
+//   const [editedDescription, setEditedDescription] = useState(userData.description || '');
+
+//   // New state for post creation
+//   const [newPost, setNewPost] = useState({
+//     image: '',
+//     title: '',
+//     size: '',
+//     category: '',
+//     price: '',
+//     description: '',
+//     stock: '',
+//     brand: '',
+//   });
+
+//   // State to store user's products
+//   const [userProducts, setUserProducts] = useState([]);
+
+//   // Function to fetch user's products
+//   const fetchUserProducts = async () => {
+//     try {
+//       // Fetch the user's products based on their ID or another identifier
+//       const response = await fetch(`http://localhost:8001/api/products/user/${userData.id}`);
+//       const data = await response.json();
+//       setUserProducts(data);
+//     } catch (error) {
+//       console.error('Error fetching user products:', error);
+//     }
+//   };
+
+//   // Effect to fetch user's products when the component mounts
+//   useEffect(() => {
+//     // Call the function to fetch user's products
+//     fetchUserProducts();
+//   }, [userData.id]);
+
+//   // Handle profile editing
+//   const handleEditClick = () => {
+//     setIsEditing(true);
+//   };
+
+//   const handleSaveClick = () => {
+//     console.log('Edited Description:', editedDescription);
+//     setIsEditing(false);
+//   };
+
+//   // Handle post creation
+//   const handlePostClick = async () => {
+//     console.log('New Post:', newPost);
+
+//     try {
+//       // Sending a POST request to create a new product
+//       const response = await fetch('http://localhost:8001/api/products/addProduct', {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(newPost),
+//       });
+
+//       if (response.ok) {
+//         console.log('Product created successfully');
+//         // Refresh the user's products after creating a new one
+//         fetchUserProducts();
+//       } else {
+//         console.error('Failed to create product');
+//       }
+//     } catch (error) {
+//       console.error('Error creating product:', error);
+//     }
+//   };
+
+//   return (
+//     <div>
+//       {/* Profile Section */}
+//       <div style={{ textAlign: 'center', marginTop: '20px' }}>
+//         <div
+//           style={{
+//             width: '150px',
+//             height: '150px',
+//             borderRadius: '50%',
+//             overflow: 'hidden',
+//             margin: '0 auto',
+//           }}
+//         >
+//           <img
+//             src={userData.image}
+//             alt="Profile"
+//             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+//           />
+//         </div>
+//         <p style={{ marginTop: '10px', fontSize: '1.5rem', fontWeight: 'bold' }}>
+//           {userData.name}
+//         </p>
+
+//         {/* Description Section */}
+//         {isEditing ? (
+//           // Edit mode with input field
+//           <div style={{ margin: '10px 0' }}>
+//             <input
+//               type="text"
+//               value={editedDescription}
+//               onChange={(e) => setEditedDescription(e.target.value)}
+//             />
+//             <Button
+//               variant="contained"
+//               style={{ backgroundColor: '#6C5DD3', color: '#FFFFFF', marginRight: '10px' }}
+//               onClick={handleSaveClick}
+//             >
+//               Save
+//             </Button>
+//           </div>
+//         ) : (
+//           // Display mode with description and edit button
+//           <div style={{ margin: '10px 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+//             <p style={{ fontSize: '1rem', color: 'white', marginRight: '10px' }}>
+//               {editedDescription || 'Welcome to my profile'}
+//             </p>
+//             <Button
+//               variant="contained"
+//               style={{ backgroundColor: '#6C5DD3', color: '#FFFFFF' }}
+//               onClick={handleEditClick}
+//             >
+//               Edit
+//             </Button>
+//           </div>
+//         )}
+//       </div>
+
+//       {/* Create New Post Section */}
+//       <Box
+//         sx={{
+//           backgroundColor: 'white',
+//           padding: '20px',
+//           borderRadius: '8px',
+//           boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+//           display: 'flex',
+//           justifyContent: 'space-between',
+//         }}
+//       >
+//         {/* Left Section: Create New Post */}
+//         <div style={{ flex: 1, marginRight: '20px', textAlign: 'left' }}>
+//           <h2>Create a New Post</h2>
+//           <div>
+//             <TextField
+//               label="Image"
+//               variant="outlined"
+//               value={newPost.image}
+//               onChange={(e) => setNewPost({ ...newPost, image: e.target.value })}
+//               fullWidth
+//               margin="normal"
+//             />
+//           </div>
+//           <div>
+//             <TextField
+//               label="Title"
+//               variant="outlined"
+//               value={newPost.title}
+//               onChange={(e) => setNewPost({ ...newPost, title: e.target.value })}
+//               fullWidth
+//               margin="normal"
+//             />
+//           </div>
+//           <div>
+//             <TextField
+//               label="Size"
+//               variant="outlined"
+//               value={newPost.size}
+//               onChange={(e) => setNewPost({ ...newPost, size: e.target.value })}
+//               fullWidth
+//               margin="normal"
+//             />
+//           </div>
+//           <div>
+//             <FormControl fullWidth variant="outlined" margin="normal">
+//               <InputLabel id="category-label">Category</InputLabel>
+//               <Select
+//                 label="categories"
+//                 labelId="categories-label"
+//                 value={newPost.category}
+//                 onChange={(e) => setNewPost({ ...newPost, category: e.target.value })}
+//               >
+//                 <MenuItem value="men">Men</MenuItem>
+//                 <MenuItem value="women">Women</MenuItem>
+//                 <MenuItem value="kids">Kids</MenuItem>
+//               </Select>
+//             </FormControl>
+//           </div>
+//           <div>
+//             <TextField
+//               label="Price"
+//               variant="outlined"
+//               value={newPost.price}
+//               onChange={(e) => setNewPost({ ...newPost, price: e.target.value })}
+//               fullWidth
+//               margin="normal"
+//             />
+//           </div>
+//           <div>
+//             <TextField
+//               label="Description"
+//               variant="outlined"
+//               value={newPost.description}
+//               onChange={(e) => setNewPost({ ...newPost, description: e.target.value })}
+//               fullWidth
+//               margin="normal"
+//             />
+//           </div>
+//           <div>
+//             <TextField
+//               label="Stock"
+//               variant="outlined"
+//               value={newPost.stock}
+//               onChange={(e) => setNewPost({ ...newPost, stock: e.target.value })}
+//               fullWidth
+//               margin="normal"
+//             />
+//           </div>
+//           <div>
+//             <TextField
+//               label="Brand"
+//               variant="outlined"
+//               value={newPost.brand}
+//               onChange={(e) => setNewPost({ ...newPost, brand: e.target.value })}
+//               fullWidth
+//               margin="normal"
+//             />
+//           </div>
+//           <Button
+//             variant="contained"
+//             style={{ backgroundColor: '#6C5DD3', color: '#FFFFFF', marginTop: '10px' }}
+//             onClick={handlePostClick}
+//           >
+//             Post
+//           </Button>
+//         </div>
+
+//         {/* Right Section: Display User's Products */}
+//         <div style={{ flex: 1, textAlign: 'center' }}>
+//           <h2>My Products</h2>
+//           <div>
+//             {/* Display user's products here */}
+//             {userProducts.map((product) => (
+//               <p key={product.id}>{product.title}</p>
+//               // Add more details or styling as needed
+//             ))}
+//           </div>
+//         </div>
+//       </Box>
+//     </div>
+//   );
+// };
+
+// export default ProfileSeller;
+

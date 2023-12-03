@@ -14,7 +14,7 @@ const {   addProduct,
     getPublishedProduct,
     searchProducts,
     addTestProducts, 
-    getProductReviews,
+    getProductReviews,getProductsByUser,
     } = require('../../controllers/productController');
 
 const {
@@ -38,6 +38,8 @@ router.post('/addReview/:id', reviewController.addReview)
 // get product Reviews
 router.get('/getProductReviews/:id', productController.getProductReviews)
 
+//get seller products  //
+router.get('/user/:userId', productController.getProductsByUser);
 
 
 

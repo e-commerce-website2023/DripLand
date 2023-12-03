@@ -227,7 +227,7 @@ const Productdetail = () => {
       </MuiCard>
 
       <div style={{ marginLeft: '20px', flex: 1 }}>
-        <h1>Review</h1>
+        <h1>put feedback</h1>
         <ReviewForm productId={productId} />
         {/* Display existing reviews here if needed */}
       </div>
