@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
         },
         description: {
             type: DataTypes.TEXT
+        },
+        product_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
     })
    

@@ -84,11 +84,12 @@ const ReviewForm = ({ productId }) => {
       const apiUrl = `http://localhost:8001/api/products/addReview/${productId}`;
 
       const response = await axios.post(apiUrl, {
+        product_id: productId, 
         rating: parseInt(rating),
         description,
       });
 
-      console.log('Review added successfully:', response.data);
+      console.log('Review added successfully', response.data,"product_id: productId", productId);
 
       // You can perform additional actions here if needed
 

@@ -68,7 +68,7 @@ const Product = models.products;
 const addReview = async (req, res) => {
 
     const id = req.params.id
-
+    console.log(id,'id add review')
     let data = {
         product_id: id,
         rating: req.body.rating,
@@ -77,6 +77,7 @@ const addReview = async (req, res) => {
 
     const review = await Review.create(data)
     res.status(200).send(review)
+    console.log(data,'this is the product_id')
 
 }
 

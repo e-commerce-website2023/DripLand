@@ -135,6 +135,25 @@ const searchProducts = async (req, res) => {
 
 // }
 // 7. connect one to many relation Product and Reviews
+// const getProductReviews = async (req, res) => {
+//   try {
+//     const id = req.params.id;
+
+//     // Use the correct association name 'reviews' instead of 'review'
+//     const data = await Product.findOne({
+//       include: [{
+//         model: Review,
+//         as: 'reviews'
+//       }],
+//       where: { id: id }
+//     });
+
+//     res.status(200).send(data);
+//   } catch (error) {
+//     console.error('Error in getProductReviews:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// };
 const getProductReviews = async (req, res) => {
   try {
     const id = req.params.id;
@@ -154,6 +173,7 @@ const getProductReviews = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
+
 
 //testing
 const addTestProducts = async (req, res) => {
