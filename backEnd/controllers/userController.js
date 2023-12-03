@@ -29,45 +29,6 @@ exports.signup
   }
 };
 
-// exports.signin = async (req, res, next) => {
-//   const { email, password } = req.body;
-//   console.log('Received login request:', req.body);
-
-//   try {
-
-//     // Validation
-//     if (!email) {
-//       return next(new ErrorResponse('Please add an email', 403));
-//     }
-//     if (!password) {
-//       return next(new ErrorResponse('Please add a password', 403));
-//     }
-
-//     // Check user email
-//     const user = await User.findOne({ email, password });
-//   console.log('Received login request:', { email, password })
-
-//     if (user == null) {
-//       return next(new ErrorResponse('Invalid credentials', 400));
-//     }
-
-//     // Check password using the correct method in your User model
-//     const isMatched = await user.comparePassword(password);
-
-//     if (!isMatched) {
-//       return next(new ErrorResponse('Invalid credentials', 400));
-//     }
-//     // sendTokenResponse(user, 200, res);
-//     res.status(200).json({
-//       success: true,
-//       id: user.id,
-//       role: user.role,
-//     });
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
 
 exports.signin = async (req, res, next) => {
   const { email, password } = req.body;

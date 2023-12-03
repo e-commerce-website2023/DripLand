@@ -2,7 +2,7 @@ import React from 'react'
 
 const ProfileAdmin = ({userData}) => {
   return (
-    <div>ProfileAdmin</div>
+    <div>Dashboard</div>
 
 
 

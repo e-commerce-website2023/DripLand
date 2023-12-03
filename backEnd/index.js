@@ -24,7 +24,7 @@ app.use('/api/products', productRouter)
 const users = require('./routes/users')
 const products = require('./routes/product')
 // const login = require('./routes/login')
-
+const reviews = require('./routes/product')
 
 
 
@@ -33,18 +33,17 @@ const path= require ('path')
 const db= require('./models')
 
 
-
+const { review } = require('./controllers')
 const { product } = require('./controllers')
 const { user } = require('./controllers')
 
 
 
 
-
-app.use('/users', users);
-app.use('/product', products);
-// app.use('/login', login);
-
+//icommented
+// app.use('/users', users);
+// app.use('/product', products);
+// app.use('/review', reviews);
 
 app.use('/static', express.static(path.join(__dirname, 'public')));
 

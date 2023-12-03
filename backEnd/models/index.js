@@ -19,10 +19,6 @@ const sequelize = new Sequelize(dbConfig.DATABASE, dbConfig.USER, dbConfig.PASSW
 });
 
 
-
-
-
-
 sequelize.authenticate()
 .then(() => {
     console.log('connected..')
@@ -30,7 +26,6 @@ sequelize.authenticate()
 .catch(err => {
     console.log('Errr'+ err)
 })
-
 
 
 //db model
@@ -45,6 +40,20 @@ db.models.reviews= require('./review')(sequelize, Sequelize.DataTypes);
 
 /* The code `db.sequelize.sync({ force: false })` is used to synchronize the defined models with the
 database. It creates the necessary tables in the database based on the defined models. */
+
+db.products = require('./product.js')(sequelize, DataTypes)
+db.reviews = require('./review.js')(sequelize, DataTypes)
+
+db.products.hasMany(db.reviews, {
+    foreignKey: 'product_id',
+    as: 'reviews'
+})
+
+db.reviews.belongsTo(db.products, {
+    foreignKey: 'product_id',
+    as: 'product'
+})
+
 
 db.sequelize.sync({ force: false })
 .then(() => {

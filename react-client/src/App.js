@@ -1,7 +1,4 @@
 
-
-
-// export default App;
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import axios from "axios";
@@ -14,12 +11,15 @@ import Login from './components/Login';
 import ProfileUser from './components/ProfileUser';
 import ProfileAdmin from './components/ProfileAdmin';
 import ProfileSeller from './components/ProfileSeller';
+import Productdetail from './components/Productdetail'
+import Card from './components/Card'
 import Checkout from './components/Checkout';
 import Search from './components/Search';
 import Logo from './components/Logo';
-import { commonStyles, navStyles, linkHome } from "./components/styles";
+import { commonStyles,navStyles,linkHome } from "./components/styles";
 import Box from '@mui/material/Box';
 import { styled,createTheme, ThemeProvider } from '@mui/system';
+
 
 const GradientBackground = styled(Box)(({ theme }) => ({
   ...commonStyles.gradientBackground,
@@ -36,8 +36,13 @@ const theme = createTheme({
   },
 });
 
+
+
+
 function App() {
   const [userData, setUserData] = useState({});
+  
+
 
   return (
     <GradientBackground>
@@ -47,14 +52,24 @@ function App() {
           <Search />
           <div style={navStyles.linkContainer}></div>
           <Link to="/" style={navStyles.linkHome}>Home</Link>
-          <Link to="/Checkout" style={navStyles.linkCheckout}>Checkout</Link>
-          <Link to="/Profile" style={navStyles.linkProfile}>Profile</Link>
+          
+         
           <Link to="/AboutUs" style={navStyles.linkAboutus}>AboutUs</Link>
-          {/* Conditionally render login/logout link */}
+          
+         
           {userData && userData.email ? (
-            <Link to="/Logout" style={navStyles.linkAboutus}>Logout</Link>
+              <>
+           
+              
+            <Link to="/Checkout" style={navStyles.linkProfile}>Checkout</Link> 
+            <Link to="/Profile" style={navStyles.linkProfile}>Profile</Link> 
+            <Link to="/Logout" style={navStyles.linkAboutus}>Logout</Link> 
+            </>
+
           ) : (
+
             <Link to="/Login" style={navStyles.linkAboutus}>Login</Link>
+
           )}
           <div style={navStyles.linkContainer}></div>
         </nav>
@@ -78,6 +93,9 @@ function App() {
                 )
               }
             />
+                        <Route path="/product/:productId" element={<Productdetail  userData={userData} />} />
+                        <Route path="/Card" element={<Card   userData={userData}/>} />
+
           </Routes>
         </div>
       </Router>

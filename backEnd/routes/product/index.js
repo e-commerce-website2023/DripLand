@@ -1,15 +1,4 @@
-// const express = require('express');
-// const router = express.Router();
 
-// router.get('/', (request, response) => {
-//     response.send('This is the home page of the posts.')
-// });
-
-// router.get('/most-popular', (request, response) => {
-//     response.send('These are the most popular posts.');
-// });
-
-// module.exports = router;
 
 
 const express = require("express");
@@ -17,17 +6,48 @@ const router = express.Router();
 
 const productController = require('../../controllers/productController')
 const reviewController = require('../../controllers/reviewController')
-const { addProduct,getAllProducts,getPublishedProduct,searchProducts } = require('../../controllers/productController');
+const {   addProduct,
+    getAllProducts,
+    getOneProduct,
+    updateProduct,
+    deleteProduct,
+    getPublishedProduct,
+    searchProducts,
+    addTestProducts, 
+    getProductReviews,
+    } = require('../../controllers/productController');
 
-
+const {
+    addReview,
+    getAllReviews
+}= require('../../controllers/reviewController')
 // use routers
 router.post('/addProduct', productController.addProduct);
-// router.post('/addProduct', isAuthenticated, isSeller, productController.addProduct);
 
-
+//Product
 router.get('/allProducts', productController.getAllProducts)
 router.get('/search/:searchTerm', productController.searchProducts )
 router.get('/published', productController.getPublishedProduct)
+
+
+// Review Url and Controller
+
+router.get('/allReviews', reviewController.getAllReviews)
+router.post('/addReview/:id', reviewController.addReview)
+
+// get product Reviews
+router.get('/getProductReviews/:id', productController.getProductReviews)
+
+
+
+
+// Products router
+router.get('/:id', productController.getOneProduct)
+
+router.put('/:id', productController.updateProduct)
+
+router.delete('/:id', productController.deleteProduct)
+
 
 
 
