@@ -241,7 +241,6 @@
 
 // export default ProfileSeller;
 
-
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -272,7 +271,6 @@ const ProfileSeller = ({ userData }) => {
       const response = await fetch(`http://localhost:8001/api/products/getProductsByUser/${userId}`);
       if (response.ok) {
         const sellerProducts = await response.json();
-        console.log('sellerProducts',sellerProducts)
         setSellerProducts(sellerProducts);
       } else {
         console.error(`Failed to fetch seller products. Status: ${response.status}`);
@@ -281,6 +279,7 @@ const ProfileSeller = ({ userData }) => {
       console.error('Error fetching seller products:', error);
     }
   };
+
   useEffect(() => {
     // Fetch seller products on component mount
     fetchSellerProducts(userData.id);
@@ -488,8 +487,14 @@ const ProfileSeller = ({ userData }) => {
           <h2>My Products</h2>
           <div>
             {/* Display seller's products */}
-            {sellerProducts.map((product) => (
-              <p key={product.id}>{product}</p>
+            {sellerProducts
+      .slice() // Create a shallow copy of the array to avoid mutating the original array
+      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)) // Sort by creation date in descending order
+      .map((product) => (
+              <div key={product.id}>
+                <p>Title: {product.title}</p>
+                {/* Add more details based on your product structure */}
+              </div>
             ))}
           </div>
         </div>

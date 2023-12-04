@@ -161,24 +161,45 @@ const searchProducts = async (req, res) => {
 //   }
 // };
 
+// const getProductReviews = async (req, res) => {
+//   try {
+//     const id = req.params.id;
+// console.log('id in get product reviews',req.params.id,id )
+//     const data = await Product.findOne({
+//       include: [{
+//         model: Review,
+//         as: 'reviews'
+//       }],
+//       where: { id: id }
+//     });
+
+//     res.status(200).send(data);
+//   } catch (error) {
+//     console.error('Error in getProductReviews:', error);
+//     res.status(500).send('Internal Server Error');
+//   }
+// };
+
 const getProductReviews = async (req, res) => {
   try {
-    const id = req.params.id;
-console.log('id in get product reviews',req.params.id,id )
-    const data = await Product.findOne({
-      include: [{
-        model: Review,
-        as: 'reviews'
-      }],
-      where: { id: id }
-    });
+    const productId = req.params.id;
+    console.log('productId : ', productId); // Fix the variable name here
 
-    res.status(200).send(data);
+    // Assuming 'Review' is the model for your reviews
+    const reviews = await db.reviews.findAll({
+      where: { product_id: productId },
+      
+    });
+    console.log('reviews', reviews);
+
+    res.status(200).json(reviews);
   } catch (error) {
     console.error('Error in getProductReviews:', error);
     res.status(500).send('Internal Server Error');
   }
 };
+
+
 
 
 //testing
@@ -203,17 +224,15 @@ const addTestProducts = async (req, res) => {
 //get user products:
 
 const getProductsByUser = async (req, res) => {
-  
   try {
-    
     const userId = req.params.userId;
     console.log('User ID:', userId);
-    // Assuming 'User' is the model for your users
-    const userProducts = await Product.findAll({
+
+    const userProducts = await db.products.findAll({
       where: { userId: userId },
-      include: { model: User, as: 'users' },
     });
-    console.log('User Products:', userProducts); // Add this line for logging
+
+    console.log('User Products:', userProducts);
 
     res.status(200).json(userProducts);
   } catch (error) {
