@@ -42,7 +42,10 @@ module.exports = (sequelize, DataTypes) => {
         published: {
             type: DataTypes.BOOLEAN
         },
-        
+        userId: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
         
     }, {
         freezeTableName: true,

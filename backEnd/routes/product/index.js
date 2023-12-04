@@ -39,7 +39,7 @@ router.post('/addReview/:id', reviewController.addReview)
 router.get('/getProductReviews/:id', productController.getProductReviews)
 
 //get seller products  //
-router.get('/user/:userId', productController.getProductsByUser);
+router.get('/getProductsByUser/:userId', productController.getProductsByUser);
 
 
 

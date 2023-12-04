@@ -6,38 +6,75 @@ const Sequelize = require('sequelize'); // Add this line
 const db = require('../models/index.js'); 
 const Product = db.models.products;
 const Review = db.models.reviews;
+const User = db.models.users;
+// const addProduct = async (req, res) => {
+//     try {
+//       const {
+//         image,
+//         title,
+//         size,
+//         categories,
+//         price,
+//         description,
+//         stock,
+//         brand,
+//       } = req.body;
+// console.log(req.body)
+
+//       const newProduct = await Product.create({
+//         image,
+//         title,
+//         size,
+//         categories,
+//         price,
+//         description,
+//         stock,
+//         brand,
+//       });
+//       res.json({ message: "created new product", newProduct });
+//       //res.json(newProduct);
+//     } catch (error) {
+//       console.error('Error creating new product:', error);
+//       res.status(500).send(error.message);
+//     }
+//   }
+
 
 const addProduct = async (req, res) => {
-    try {
+  try {
       const {
-        image,
-        title,
-        size,
-        categories,
-        price,
-        description,
-        stock,
-        brand,
+          image,
+          title,
+          size,
+          categories,
+          price,
+          description,
+          stock,
+          brand,
+          userId,
       } = req.body;
-console.log(req.body)
 
+      // Use the userId when creating the product
       const newProduct = await Product.create({
-        image,
-        title,
-        size,
-        categories,
-        price,
-        description,
-        stock,
-        brand,
+          image,
+          title,
+          size,
+          categories,
+          price,
+          description,
+          stock,
+          brand,
+          userId,
       });
-      res.json({ message: "created new product", newProduct });
-      //res.json(newProduct);
-    } catch (error) {
+
+      res.json({ message: 'created new product', newProduct });
+  } catch (error) {
       console.error('Error creating new product:', error);
       res.status(500).send(error.message);
-    }
   }
+};
+
+
 
 // 2. get all products
 
@@ -196,13 +233,17 @@ const addTestProducts = async (req, res) => {
 
 //get user products:
 
-
 const getProductsByUser = async (req, res) => {
+  
   try {
+    
     const userId = req.params.userId;
-
-    // Assuming you have a 'user_id' column in your Product table
-    const userProducts = await Product.findAll({ where: { user_id: userId } });
+console.log('this is use id',userId)
+    // Assuming 'User' is the model for your users
+    const userProducts = await Product.findAll({
+      where: { userId: userId },
+      include: { model: User, as: 'user' },
+    });
 
     res.status(200).json(userProducts);
   } catch (error) {
@@ -210,7 +251,6 @@ const getProductsByUser = async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 };
-
 
 
 module.exports = {

@@ -119,6 +119,7 @@ const Login = ({ setUserData }) => {
       });
 
       if (response.data.message === 'Login successful') {
+        console.log('Login successful',response.data.user)
         setUserData(response.data.user);
         // Redirect or update state to go to the home page
       } else {
