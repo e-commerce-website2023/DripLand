@@ -104,7 +104,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { Link } from 'react-router-dom'; // Import the Link component
+import { Link } from 'react-router-dom';
 
 const Login = ({ setUserData }) => {
   const [email, setEmail] = useState('');
@@ -119,15 +119,15 @@ const Login = ({ setUserData }) => {
       });
 
       if (response.data.message === 'Login successful') {
-        console.log('Login successful',response.data.user)
+        console.log('Login successful', response.data.user);
         setUserData(response.data.user);
-        // Redirect or update state to go to the home page
+       
       } else {
         setError(response.data.error || 'Invalid email or password');
       }
     } catch (err) {
       console.log(err);
-      setError('An error occurred. Please try again.');
+      setError('Your email or password are not correcr.Please try again. ');
     }
   };
 
@@ -186,7 +186,7 @@ const Login = ({ setUserData }) => {
       <br />
       <br />
       <Typography variant="body2" style={{ color: 'white', marginBottom: '10px' }}>
-        Don't have an account? Join Us
+        Don't have an account? <Link to="/Signup">Join Us</Link>
       </Typography>
       <Button component={Link} to="/Signup" fullWidth>
         SignUp
