@@ -1,7 +1,7 @@
 
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import axios from "axios";
+
 import { useState } from "react";
 import Homepage from './components/Homepage';
 import Aboutus from './components/Aboutus';
@@ -63,7 +63,7 @@ function App() {
               
             <Link to="/Checkout" style={navStyles.linkProfile}>Checkout</Link> 
             <Link to="/Profile" style={navStyles.linkProfile}>Profile</Link> 
-            <Link to="/Logout" style={navStyles.linkAboutus}>Logout</Link> 
+            <Link to="/Login" style={navStyles.linkAboutus}>Logout</Link> 
             </>
 
           ) : (

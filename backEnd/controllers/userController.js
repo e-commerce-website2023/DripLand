@@ -69,30 +69,55 @@ exports.signup
 // };
 
 
+// exports.signin = async (req, res, next) => {
+//   const { email, password } = req.body;
+//   const checkLogin = async (email, password) => {
+//     try {
+//       const user = await User.findOne({ email, password });
+//       return user;
+//     } catch (error) {
+//       throw error;
+//     }
+//   };
+
+//   try {
+//     const user = await checkLogin(email, password);
+
+//     if (user) {
+//       res.status(200).json({ message: 'Login successful', user });
+//     } else {
+//       res.status(401).json({ error: 'Invalid email or password' });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ error: error.message });
+//   }
+
+// }
 exports.signin = async (req, res, next) => {
   const { email, password } = req.body;
-  const checkLogin = async (email, password) => {
-    try {
-      const user = await User.findOne({ email, password });
-      return user;
-    } catch (error) {
-      throw error;
-    }
-  };
 
   try {
-    const user = await checkLogin(email, password);
+    // Find user by email
+    const user = await User.findOne({ where: { email } });
 
-    if (user) {
-      res.status(200).json({ message: 'Login successful', user });
-    } else {
-      res.status(401).json({ error: 'Invalid email or password' });
+    if (!user) {
+      return res.status(401).json({ error: 'Invalid email or password' });
     }
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
 
-}
+    // Validate password
+    const isMatched = await user.comparePassword(password);
+
+    if (!isMatched) {
+      return res.status(401).json({ error: 'Invalid email or password' });
+    }
+
+    // Login successful
+    res.status(200).json({ message: 'Login successful', user });
+  } catch (error) {
+    console.error('Error in signin:', error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+};
 
 
 

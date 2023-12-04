@@ -14,7 +14,8 @@ const {   addProduct,
     getPublishedProduct,
     searchProducts,
     addTestProducts, 
-    getProductReviews,getProductsByUser,
+    getProductReviews,
+    getProductsByUser,
     } = require('../../controllers/productController');
 
 const {

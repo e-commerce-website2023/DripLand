@@ -7,37 +7,6 @@ const db = require('../models/index.js');
 const Product = db.models.products;
 const Review = db.models.reviews;
 const User = db.models.users;
-// const addProduct = async (req, res) => {
-//     try {
-//       const {
-//         image,
-//         title,
-//         size,
-//         categories,
-//         price,
-//         description,
-//         stock,
-//         brand,
-//       } = req.body;
-// console.log(req.body)
-
-//       const newProduct = await Product.create({
-//         image,
-//         title,
-//         size,
-//         categories,
-//         price,
-//         description,
-//         stock,
-//         brand,
-//       });
-//       res.json({ message: "created new product", newProduct });
-//       //res.json(newProduct);
-//     } catch (error) {
-//       console.error('Error creating new product:', error);
-//       res.status(500).send(error.message);
-//     }
-//   }
 
 
 const addProduct = async (req, res) => {
@@ -238,12 +207,13 @@ const getProductsByUser = async (req, res) => {
   try {
     
     const userId = req.params.userId;
-console.log('this is use id',userId)
+    console.log('User ID:', userId);
     // Assuming 'User' is the model for your users
     const userProducts = await Product.findAll({
       where: { userId: userId },
-      include: { model: User, as: 'user' },
+      include: { model: User, as: 'users' },
     });
+    console.log('User Products:', userProducts); // Add this line for logging
 
     res.status(200).json(userProducts);
   } catch (error) {

@@ -120,7 +120,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Card as MuiCard, CardContent, CardActions, Button, Typography } from '@mui/material';
-import ReviewForm from './ReviewForm.js';
+import ReviewForm from './ReviewForm.js.js';
 const Productdetail = () => {
   const navigate = useNavigate();
   const { productId } = useParams();

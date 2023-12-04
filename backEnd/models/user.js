@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
+const { Sequelize, DataTypes } = require('sequelize');
+const db = require('../models/index'); 
 
 module.exports = (sequelize,DataTypes) => {
     const User = sequelize.define('User', {
@@ -61,7 +62,10 @@ module.exports = (sequelize,DataTypes) => {
       });
     };
     User.associate = (models) => {
-      User.hasMany(models.Product, { foreignKey: 'userId', as: 'products' });
+      User.hasMany(models.Product, {
+        foreignKey: 'userId',
+        as: 'products',
+      });
     };
     
 

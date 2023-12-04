@@ -1,5 +1,5 @@
-
-
+const { DataTypes } = require('sequelize');
+const db = require('../models/index')
 
 module.exports = (sequelize, DataTypes) => {
 
@@ -52,9 +52,17 @@ module.exports = (sequelize, DataTypes) => {
     });
 
 
+    // Product.associate = (models) => {
+    //     Product.belongsTo(models.User, { foreignKey: 'user_Id', as: 'user' });
     Product.associate = (models) => {
-        Product.belongsTo(models.User, { foreignKey: 'user_Id', as: 'user' });
-
+        Product.belongsTo(models.User, {
+          foreignKey: 'userId',
+          as: 'users',
+        });
+        Product.hasMany(models.Review, {
+          foreignKey: 'product_id',
+          as: 'reviews',
+        });
 
       };
     return Product;
