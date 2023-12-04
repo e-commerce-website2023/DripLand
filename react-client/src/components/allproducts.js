@@ -107,17 +107,7 @@ const AllProducts = () => {
         margin: '80px 0 0 0',
       }}
     >
-      <div style={{ display: 'flex', marginBottom: '10px' }}>
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <button onClick={handleSearch} style={{ marginLeft: '10px' }}>
-          Search
-        </button>
-      </div>
+     
       <div
         style={{
           display: 'flex',

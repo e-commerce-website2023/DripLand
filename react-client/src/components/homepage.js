@@ -14,7 +14,7 @@ const Homepage = ({userData}) => {
   return (
   
  <div>
-   <div>{userData.id}</div>
+  
       <AllProducts />
 
 

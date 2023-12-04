@@ -19,7 +19,7 @@ const ProfileUser = ({ userData }) => {
  
   return (
     <div style={{ textAlign: 'center', marginTop: '20px' }}>
-      <div>{userData.id}</div>
+     
       {/* Circular profile image */}
       <div
         style={{
